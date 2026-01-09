@@ -14,11 +14,20 @@ import { SettingsStorage, SiteSettings } from "@/lib/storage";
 import { useState, useEffect } from "react";
 
 const Index = () => {
-  const [settings, setSettings] = useState<SiteSettings>(SettingsStorage.getSettings());
+  const [settings, setSettings] = useState<SiteSettings>({
+    maintenanceMode: false,
+    privacyText: '',
+    termsText: ''
+  });
 
   useEffect(() => {
-    const handleStorageUpdate = () => {
-      setSettings(SettingsStorage.getSettings());
+    SettingsStorage.getSettings().then(setSettings);
+  }, []);
+
+  useEffect(() => {
+    const handleStorageUpdate = async () => {
+      const data = await SettingsStorage.getSettings();
+      setSettings(data);
     };
     window.addEventListener('storage-settings-updated', handleStorageUpdate);
     return () => window.removeEventListener('storage-settings-updated', handleStorageUpdate);
@@ -42,13 +51,13 @@ const Index = () => {
         <Navbar />
         <main>
           {/* Hero Section - First Impression */}
-          <Hero />
+          {/* <Hero /> */}
 
           {/* Services - What We Offer */}
-          <Services />
+          {/* <Services /> */}
 
           {/* Portfolio - Proof of Work */}
-          <Portfolio />
+          {/* <Portfolio /> */}
 
           {/* Tech Stack - Our Expertise */}
           <TechStack />
@@ -60,7 +69,7 @@ const Index = () => {
           <About />
 
           {/* Blog Preview - Thought Leadership */}
-          <BlogPreview />
+          {/* <BlogPreview /> */}
 
           {/* FAQ - Address Common Questions */}
           <FAQ />

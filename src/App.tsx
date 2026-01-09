@@ -35,13 +35,22 @@ const queryClient = new QueryClient();
 // Inner component to use hooks that require Router context
 const AppRoutes = () => {
   useVisitorTracking();
-  const [settings, setSettings] = useState<SiteSettings>(SettingsStorage.getSettings());
+  const [settings, setSettings] = useState<SiteSettings>({
+    maintenanceMode: false,
+    privacyText: '',
+    termsText: ''
+  });
+
+  useEffect(() => {
+    SettingsStorage.getSettings().then(setSettings);
+  }, []);
   const navigate = useNavigate();
 
   // Listen for storage updates
   useEffect(() => {
-    const handleStorageUpdate = () => {
-      setSettings(SettingsStorage.getSettings());
+    const handleStorageUpdate = async () => {
+      const data = await SettingsStorage.getSettings();
+      setSettings(data);
     };
     window.addEventListener('storage-settings-updated', handleStorageUpdate);
     return () => window.removeEventListener('storage-settings-updated', handleStorageUpdate);
@@ -109,11 +118,20 @@ const AppRoutes = () => {
 };
 
 const App = () => {
-  const [settings, setSettings] = useState<SiteSettings>(SettingsStorage.getSettings());
+  const [settings, setSettings] = useState<SiteSettings>({
+    maintenanceMode: false,
+    privacyText: '',
+    termsText: ''
+  });
 
   useEffect(() => {
-    const handleStorageUpdate = () => {
-      setSettings(SettingsStorage.getSettings());
+    SettingsStorage.getSettings().then(setSettings);
+  }, []);
+
+  useEffect(() => {
+    const handleStorageUpdate = async () => {
+      const data = await SettingsStorage.getSettings();
+      setSettings(data);
     };
     window.addEventListener('storage-settings-updated', handleStorageUpdate);
     return () => window.removeEventListener('storage-settings-updated', handleStorageUpdate);
