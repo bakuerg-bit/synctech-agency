@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send, Loader2, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { LeadStorage, Lead } from "@/lib/storage";
+import { sendEmailNotification } from "@/lib/notifications";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,9 @@ const Contact = () => {
 
     try {
       await LeadStorage.addLead({ name, email, message, category });
+
+      // Send email notification
+      await sendEmailNotification('lead', { name, email, message, category });
 
       const response = await fetch("https://formspree.io/f/xkoweedl", {
         method: "POST",

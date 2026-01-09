@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BlogStorage, BlogPost } from '@/lib/storage';
+import { sendEmailNotification } from '@/lib/notifications';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -41,6 +42,14 @@ const BlogManager = () => {
             return;
         }
         await BlogStorage.addPost(formData);
+
+        // Send email notification for new blog post
+        await sendEmailNotification('blog', {
+            title: formData.title,
+            excerpt: formData.excerpt,
+            author: formData.author
+        });
+
         toast({ title: "Post Published", description: "Your article is now live." });
         setFormData({ title: '', excerpt: '', content: '', author: 'Synctech Team' });
         setIsAddOpen(false);
