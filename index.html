@@ -27,18 +27,16 @@
     // Single Page Apps for GitHub Pages
     // https://github.com/rafgraph/spa-github-pages
     (function (l) {
-      console.log('SPA Script checking:', l.search);
       if (l.search.startsWith('?p=')) {
         var path = l.search.slice(3).split('&')[0].replace(/~and~/g, '&');
-        console.log('SPA Script restoring path:', path);
         window.history.replaceState(null, null,
           l.pathname.slice(0, -1) + path + l.hash
         );
       }
     }(window.location))
   </script>
-  <script type="module" crossorigin src="./assets/index-DNfEduzj.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DTR26LQ5.css">
+  <script type="module" crossorigin src="/assets/index-DNfEduzj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DTR26LQ5.css">
 </head>
 
 <body>
