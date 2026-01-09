@@ -23,10 +23,12 @@ import Subscribers from "./pages/Admin/Subscribers";
 import HeroEditor from "./pages/Admin/HeroEditor";
 import TestimonialsManager from "./pages/Admin/TestimonialsManager";
 import ServicesManager from "./pages/Admin/ServicesManager";
+import Analytics from "./pages/Admin/Analytics";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Blog from "./pages/Blog";
 import Work from "./pages/Work";
 import About from "./pages/About";
+import Pricing from "./pages/Pricing";
 import BlogPost from "./pages/BlogPost";
 import Search from "./pages/Search";
 import { useVisitorTracking } from "./hooks/use-visitor-tracking";
@@ -66,6 +68,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/work" element={<Work />} />
         <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/search" element={<Search />} />
@@ -107,6 +110,7 @@ const AppRoutes = () => {
             <Route path="portfolio" element={<PortfolioManager />} />
             <Route path="blog" element={<BlogManager />} />
             <Route path="hero" element={<HeroEditor />} />
+            <Route path="analytics" element={<Analytics />} />
             <Route path="testimonials" element={<TestimonialsManager />} />
             <Route path="services" element={<ServicesManager />} />
             <Route path="settings" element={<Settings />} />

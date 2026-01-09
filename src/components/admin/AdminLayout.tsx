@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
 import { AuthStorage } from '@/lib/storage';
 import { Button } from '@/components/ui/button';
-import { LogOut, LayoutDashboard, Settings as SettingsIcon, Inbox, Briefcase, FileText, Users, Megaphone, MessageSquare, Wrench } from 'lucide-react';
+import { LogOut, LayoutDashboard, Settings as SettingsIcon, Inbox, Briefcase, FileText, Users, Megaphone, MessageSquare, Wrench, BarChart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const AdminLayout = () => {
