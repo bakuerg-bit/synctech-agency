@@ -32,6 +32,7 @@ const AdminLayout = () => {
 
     const navItems = [
         { label: 'Dashboard', href: '/admin/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+        { label: 'Analytics', href: '/admin/analytics', icon: <BarChart className="h-4 w-4" /> },
         { label: 'Inbox', href: '/admin/inbox', icon: <Inbox className="h-4 w-4" /> },
         { label: 'Subscribers', href: '/admin/subscribers', icon: <Users className="h-4 w-4" /> },
         { label: 'Portfolio', href: '/admin/portfolio', icon: <Briefcase className="h-4 w-4" /> },
