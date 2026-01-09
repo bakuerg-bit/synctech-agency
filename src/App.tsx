@@ -14,6 +14,7 @@ import Maintenance from "./pages/Maintenance";
 import AdminLayout from "./components/admin/AdminLayout";
 import Login from "./pages/Admin/Login";
 import Dashboard from "./pages/Admin/Dashboard";
+import CookieConsent from "./components/CookieConsent";
 import Inbox from "./pages/Admin/Inbox";
 import Settings from "./pages/Admin/Settings";
 import PortfolioManager from "./pages/Admin/PortfolioManager";
@@ -159,6 +160,7 @@ const App = () => {
                   <AppRoutes />
                 </BrowserRouter>
               )}
+              <CookieConsent />
             </div>
           </TooltipProvider>
         </ThemeProvider>
