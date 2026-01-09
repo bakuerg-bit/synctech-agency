@@ -17,12 +17,30 @@ const Dashboard = () => {
     const { toast } = useToast();
 
     useEffect(() => {
-        const loadData = () => {
-            setLogs(VisitorStorage.getLogs());
-            setLeads(LeadStorage.getLeads().length);
-            setSubscribers(NewsletterStorage.getSubscribers().filter(s => s.status === 'active').length);
-            setBlogPosts(BlogStorage.getPosts().length);
-            setProjects(PortfolioStorage.getProjects().length);
+        const loadData = async () => {
+            try {
+                const [
+                    fetchedLogs,
+                    fetchedLeads,
+                    fetchedSubscribers,
+                    fetchedPosts,
+                    fetchedProjects
+                ] = await Promise.all([
+                    VisitorStorage.getLogs(),
+                    LeadStorage.getLeads(),
+                    NewsletterStorage.getSubscribers(),
+                    BlogStorage.getPosts(),
+                    PortfolioStorage.getProjects()
+                ]);
+
+                setLogs(Array.isArray(fetchedLogs) ? fetchedLogs : []);
+                setLeads(Array.isArray(fetchedLeads) ? fetchedLeads.length : 0);
+                setSubscribers(Array.isArray(fetchedSubscribers) ? fetchedSubscribers.filter(s => s.status === 'active').length : 0);
+                setBlogPosts(Array.isArray(fetchedPosts) ? fetchedPosts.length : 0);
+                setProjects(Array.isArray(fetchedProjects) ? fetchedProjects.length : 0);
+            } catch (error) {
+                console.error("Dashboard failed to load data:", error);
+            }
         };
         loadData();
         // Refresh every 5 seconds
