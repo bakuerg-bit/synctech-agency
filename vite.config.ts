@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   // Synctech is now a fully independent project - componentTagger removed
   plugins: [react()],
-  base: './', // Using ./ ensures assets load correctly on GitHub Pages
+  base: '/', // Absolute path for custom domain root
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
