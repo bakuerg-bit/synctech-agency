@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
 import { AuthStorage } from '@/lib/storage';
 import { Button } from '@/components/ui/button';
-import { LogOut, LayoutDashboard, Settings as SettingsIcon, Inbox, Briefcase, FileText, Users, Megaphone, MessageSquare, Wrench, BarChart } from 'lucide-react';
+import { LogOut, LayoutDashboard, Settings as SettingsIcon, Inbox, Briefcase, FileText, Users, Megaphone, MessageSquare, Wrench, BarChart, DollarSign } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const AdminLayout = () => {
@@ -40,6 +40,7 @@ const AdminLayout = () => {
         { label: 'Hero', href: '/admin/hero', icon: <Megaphone className="h-4 w-4" /> },
         { label: 'Testimonials', href: '/admin/testimonials', icon: <MessageSquare className="h-4 w-4" /> },
         { label: 'Services', href: '/admin/services', icon: <Wrench className="h-4 w-4" /> },
+        { label: 'Pricing', href: '/admin/pricing', icon: <DollarSign className="h-4 w-4" /> },
         { label: 'Settings', href: '/admin/settings', icon: <SettingsIcon className="h-4 w-4" /> },
     ];
 

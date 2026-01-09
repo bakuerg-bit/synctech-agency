@@ -519,3 +519,84 @@ export const ServiceStorage = {
     window.dispatchEvent(new Event('storage-services-updated'));
   }
 };
+
+// --- Pricing Plans ---
+export interface PricingPlan {
+  id: string;
+  name: string;
+  icon: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  ctaText: string;
+  isPopular: boolean;
+  displayOrder: number;
+}
+
+export const PricingStorage = {
+  getPlans: async (): Promise<PricingPlan[]> => {
+    const { data, error } = await supabase
+      .from('pricing_plans')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching pricing plans:', error);
+      return [];
+    }
+
+    return (data || []).map((d: any) => ({
+      id: d.id,
+      name: d.name,
+      icon: d.icon,
+      price: d.price,
+      period: d.period,
+      description: d.description,
+      features: d.features || [],
+      ctaText: d.cta_text,
+      isPopular: d.is_popular,
+      displayOrder: d.display_order
+    }));
+  },
+
+  addPlan: async (plan: Omit<PricingPlan, 'id'>) => {
+    const { error } = await supabase.from('pricing_plans').insert([{
+      name: plan.name,
+      icon: plan.icon,
+      price: plan.price,
+      period: plan.period,
+      description: plan.description,
+      features: plan.features,
+      cta_text: plan.ctaText,
+      is_popular: plan.isPopular,
+      display_order: plan.displayOrder
+    }]);
+    if (error) console.error('Error adding plan:', error);
+    window.dispatchEvent(new Event('storage-pricing-updated'));
+  },
+
+  updatePlan: async (id: string, plan: Partial<PricingPlan>) => {
+    const updateData: any = {};
+    if (plan.name !== undefined) updateData.name = plan.name;
+    if (plan.icon !== undefined) updateData.icon = plan.icon;
+    if (plan.price !== undefined) updateData.price = plan.price;
+    if (plan.period !== undefined) updateData.period = plan.period;
+    if (plan.description !== undefined) updateData.description = plan.description;
+    if (plan.features !== undefined) updateData.features = plan.features;
+    if (plan.ctaText !== undefined) updateData.cta_text = plan.ctaText;
+    if (plan.isPopular !== undefined) updateData.is_popular = plan.isPopular;
+    if (plan.displayOrder !== undefined) updateData.display_order = plan.displayOrder;
+
+    const { error } = await supabase.from('pricing_plans').update(updateData).eq('id', id);
+    if (error) console.error('Error updating plan:', error);
+    window.dispatchEvent(new Event('storage-pricing-updated'));
+  },
+
+  deletePlan: async (id: string) => {
+    const { error } = await supabase.from('pricing_plans').delete().eq('id', id);
+    if (error) console.error('Error deleting plan:', error);
+    window.dispatchEvent(new Event('storage-pricing-updated'));
+  }
+};
+

@@ -4,12 +4,28 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Helmet } from "react-helmet-async";
 import { Check, Zap, Rocket, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Temporary interface until we add to storage.ts
+interface PricingPlan {
+    id: string;
+    name: string;
+    icon: string;
+    price: string;
+    period: string;
+    description: string;
+    features: string[];
+    ctaText: string;
+    isPopular: boolean;
+}
 
 const Pricing = () => {
-    const plans = [
+    const [plans, setPlans] = useState<PricingPlan[]>([
         {
+            id: '1',
             name: "Starter",
-            icon: <Zap className="w-8 h-8" />,
+            icon: "Zap",
             price: "$2,500",
             period: "one-time",
             description: "Perfect for small businesses and MVPs",
@@ -21,12 +37,13 @@ const Pricing = () => {
                 "2 rounds of revisions",
                 "1 month support"
             ],
-            cta: "Get Started",
-            popular: false
+            ctaText: "Get Started",
+            isPopular: false
         },
         {
+            id: '2',
             name: "Professional",
-            icon: <Rocket className="w-8 h-8" />,
+            icon: "Rocket",
             price: "$7,500",
             period: "one-time",
             description: "For growing businesses with complex needs",
@@ -39,12 +56,13 @@ const Pricing = () => {
                 "Unlimited revisions",
                 "3 months support"
             ],
-            cta: "Start Project",
-            popular: true
+            ctaText: "Start Project",
+            isPopular: true
         },
         {
+            id: '3',
             name: "Enterprise",
-            icon: <Crown className="w-8 h-8" />,
+            icon: "Crown",
             price: "Custom",
             period: "quote",
             description: "Tailored solutions for large-scale operations",
@@ -57,10 +75,23 @@ const Pricing = () => {
                 "Dedicated team",
                 "12 months support & SLA"
             ],
-            cta: "Contact Sales",
-            popular: false
+            ctaText: "Contact Sales",
+            isPopular: false
         }
-    ];
+    ]);
+    const navigate = useNavigate();
+
+    const getIcon = (iconName: string) => {
+        switch (iconName) {
+            case 'Rocket': return <Rocket className="w-8 h-8" />;
+            case 'Crown': return <Crown className="w-8 h-8" />;
+            default: return <Zap className="w-8 h-8" />;
+        }
+    };
+
+    const handleCTAClick = () => {
+        navigate('/#contact');
+    };
 
     return (
         <>
@@ -90,21 +121,21 @@ const Pricing = () => {
 
                         {/* Pricing Cards */}
                         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-                            {plans.map((plan, index) => (
+                            {plans.map((plan) => (
                                 <div
-                                    key={index}
-                                    className={`relative p-8 rounded-2xl border ${plan.popular
+                                    key={plan.id}
+                                    className={`relative p-8 rounded-2xl border ${plan.isPopular
                                             ? 'border-primary bg-primary/5 shadow-lg scale-105'
                                             : 'border-border bg-card'
                                         } transition-all duration-300 hover:shadow-xl`}
                                 >
-                                    {plan.popular && (
+                                    {plan.isPopular && (
                                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full">
                                             MOST POPULAR
                                         </div>
                                     )}
 
-                                    <div className="text-primary mb-4">{plan.icon}</div>
+                                    <div className="text-primary mb-4">{getIcon(plan.icon)}</div>
                                     <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                                     <p className="text-sm text-muted-foreground mb-6">{plan.description}</p>
 
@@ -124,14 +155,13 @@ const Pricing = () => {
                                         ))}
                                     </ul>
 
-                                    <a href="/#contact">
-                                        <Button
-                                            variant={plan.popular ? "default" : "outline"}
-                                            className="w-full ripple-effect"
-                                        >
-                                            {plan.cta}
-                                        </Button>
-                                    </a>
+                                    <Button
+                                        variant={plan.isPopular ? "default" : "outline"}
+                                        className="w-full ripple-effect"
+                                        onClick={handleCTAClick}
+                                    >
+                                        {plan.ctaText}
+                                    </Button>
                                 </div>
                             ))}
                         </div>

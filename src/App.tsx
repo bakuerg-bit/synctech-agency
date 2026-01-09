@@ -23,6 +23,7 @@ import Subscribers from "./pages/Admin/Subscribers";
 import HeroEditor from "./pages/Admin/HeroEditor";
 import TestimonialsManager from "./pages/Admin/TestimonialsManager";
 import ServicesManager from "./pages/Admin/ServicesManager";
+import PricingManager from "./pages/Admin/PricingManager";
 import Analytics from "./pages/Admin/Analytics";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Blog from "./pages/Blog";
@@ -113,6 +114,7 @@ const AppRoutes = () => {
             <Route path="analytics" element={<Analytics />} />
             <Route path="testimonials" element={<TestimonialsManager />} />
             <Route path="services" element={<ServicesManager />} />
+            <Route path="pricing" element={<PricingManager />} />
             <Route path="settings" element={<Settings />} />
             <Route index element={<Dashboard />} />
           </Route>
