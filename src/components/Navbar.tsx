@@ -105,6 +105,7 @@ const Navbar = () => {
                   </div>
                 </div>
               ))}
+              <Link to="/work" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Work</Link>
               <a href="#about" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">About</a>
               <a href="#contact" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Contact</a>
             </div>

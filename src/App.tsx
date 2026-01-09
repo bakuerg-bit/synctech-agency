@@ -25,6 +25,7 @@ import TestimonialsManager from "./pages/Admin/TestimonialsManager";
 import ServicesManager from "./pages/Admin/ServicesManager";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Blog from "./pages/Blog";
+import Work from "./pages/Work";
 import BlogPost from "./pages/BlogPost";
 import Search from "./pages/Search";
 import { useVisitorTracking } from "./hooks/use-visitor-tracking";
@@ -62,6 +63,7 @@ const AppRoutes = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/work" element={<Work />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/search" element={<Search />} />

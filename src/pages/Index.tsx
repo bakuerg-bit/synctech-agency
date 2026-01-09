@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import TechStack from "@/components/TechStack";
 import Portfolio from "@/components/Portfolio";
 import BlogPreview from "@/components/BlogPreview";
+import TrustedBy from "@/components/TrustedBy";
 import { SettingsStorage, SiteSettings } from "@/lib/storage";
 import { useState, useEffect } from "react";
 
@@ -52,6 +53,9 @@ const Index = () => {
         <main>
           {/* Hero Section - First Impression */}
           <Hero />
+
+          {/* Trust Signals */}
+          <TrustedBy />
 
           {/* Services - What We Offer */}
           <Services />

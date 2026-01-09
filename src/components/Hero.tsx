@@ -47,7 +47,7 @@ const Hero = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6 tracking-tight transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {heroContent.headline.split('\n').map((line, i) => (
               <span key={i} className="block">
                 {line}
@@ -59,7 +59,7 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <p className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {heroContent.subheadline}
           </p>
 
