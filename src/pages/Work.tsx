@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Portfolio from "@/components/Portfolio";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -10,6 +11,9 @@ const Work = () => {
         <div className="min-h-screen bg-background">
             <Navbar />
             <main className="pt-24 pb-16">
+                <div className="container mx-auto px-6">
+                    <Breadcrumbs items={[{ label: "Work" }]} />
+                </div>
                 <div className="container mx-auto px-6 text-center mb-16">
                     <span className="inline-block px-3 py-1 mb-4 text-xs font-medium tracking-wider text-primary uppercase bg-primary/10 rounded-full">
                         Selected Projects

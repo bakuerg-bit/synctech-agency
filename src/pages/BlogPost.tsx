@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { BlogStorage, BlogPost as BlogPostType } from "@/lib/storage";
 import Navbar from "@/components/Navbar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -52,6 +53,7 @@ const BlogPost = () => {
                 <Navbar />
                 <main className="py-24">
                     <article className="container mx-auto px-6 max-w-4xl">
+                        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
                         <Link to="/blog">
                             <Button variant="ghost" className="gap-2 mb-8">
                                 <ArrowLeft className="w-4 h-4" /> Back to Blog

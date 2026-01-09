@@ -46,6 +46,24 @@ const Index = () => {
         <meta property="og:title" content="Synctech | Digital Engineering & Solutions" />
         <meta property="og:description" content="Enterprise-grade digital solutions and software engineering services" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Synctech Ltd",
+            "url": "https://synctechltd.space",
+            "logo": "https://synctechltd.space/logo.png",
+            "description": "Enterprise-grade digital solutions and software engineering services",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AL"
+            },
+            "sameAs": [
+              "https://github.com/bakuerg-bit",
+              "https://linkedin.com/company/synctech"
+            ]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

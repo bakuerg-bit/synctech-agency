@@ -33,23 +33,11 @@ const Navbar = () => {
   const serviceList = Array.isArray(services) ? services : [];
 
   const menus = {
-    services: serviceList.slice(0, 4).map(s => ({
+    services: serviceList.map(s => ({
       title: s.title,
       desc: s.description,
       href: `#service-${s.id}`
     })),
-    solutions: [
-      { title: "E-Commerce", desc: "Custom storefronts with global payment logic.", href: "#ecommerce" },
-      { title: "Custom SaaS", desc: "End-to-end software as a service builds.", href: "#saas" },
-      { title: "Data Engines", desc: "Advanced data processing and visualization.", href: "#data" },
-      { title: "Mobile Core", desc: "React Native cross-platform infrastructure.", href: "#mobile" },
-    ],
-    developers: [
-      { title: "API Portal", desc: "Request technical integration credentials.", href: "mailto:tech@synctechltd.space?subject=API Access Request" },
-      { title: "OSS Tools", desc: "View our public repositories and contributions.", href: "https://github.com/bakuerg-bit" },
-      { title: "System Status", desc: "Live monitoring of SyncTech infrastructure.", href: "#status" },
-      { title: "Tech Stack", desc: "The frameworks powering our digital future.", href: "#stack" },
-    ],
   };
 
   return (
