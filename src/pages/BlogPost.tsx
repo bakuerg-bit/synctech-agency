@@ -13,10 +13,13 @@ const BlogPost = () => {
     const [post, setPost] = useState<BlogPostType | null>(null);
 
     useEffect(() => {
-        if (slug) {
-            const foundPost = BlogStorage.getPostBySlug(slug);
-            setPost(foundPost || null);
-        }
+        const fetchPost = async () => {
+            if (slug) {
+                const foundPost = await BlogStorage.getPostBySlug(slug);
+                setPost(foundPost || null);
+            }
+        };
+        fetchPost();
     }, [slug]);
 
     if (!post) {
