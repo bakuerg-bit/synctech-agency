@@ -51,13 +51,13 @@ const Index = () => {
         <Navbar />
         <main>
           {/* Hero Section - First Impression */}
-          {/* <Hero /> */}
+          <Hero />
 
           {/* Services - What We Offer */}
-          {/* <Services /> */}
+          <Services />
 
           {/* Portfolio - Proof of Work */}
-          {/* <Portfolio /> */}
+          <Portfolio />
 
           {/* Tech Stack - Our Expertise */}
           <TechStack />
@@ -69,7 +69,7 @@ const Index = () => {
           <About />
 
           {/* Blog Preview - Thought Leadership */}
-          {/* <BlogPreview /> */}
+          <BlogPreview />
 
           {/* FAQ - Address Common Questions */}
           <FAQ />

@@ -12,7 +12,10 @@ const Navbar = () => {
   const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
-    const loadServices = () => setServices(ServiceStorage.getServices());
+    const loadServices = async () => {
+      const data = await ServiceStorage.getServices();
+      setServices(Array.isArray(data) ? data : []);
+    };
     loadServices();
     window.addEventListener('storage-services-updated', loadServices);
     return () => window.removeEventListener('storage-services-updated', loadServices);
