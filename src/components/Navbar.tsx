@@ -64,8 +64,8 @@ const Navbar = () => {
                   onMouseEnter={() => setActiveMenu(key)}
                   onMouseLeave={() => setActiveMenu(null)}
                 >
-                  <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors capitalize">
-                    {key} <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeMenu === key ? 'rotate-180' : ''}`} />
+                  <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors uppercase">
+                    {key === 'services' ? 'SERVICES' : key.toUpperCase()} <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeMenu === key ? 'rotate-180' : ''}`} />
                   </button>
 
                   {/* Dropdown Panel */}
