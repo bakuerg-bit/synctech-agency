@@ -30,8 +30,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isOpen]);
 
+  const serviceList = Array.isArray(services) ? services : [];
+
   const menus = {
-    services: services.slice(0, 4).map(s => ({
+    services: serviceList.slice(0, 4).map(s => ({
       title: s.title,
       desc: s.description,
       href: `#service-${s.id}`
