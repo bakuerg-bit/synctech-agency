@@ -93,10 +93,10 @@ const Navbar = () => {
                   </div>
                 </div>
               ))}
-              <Link to="/work" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Work</Link>
-              <Link to="/pricing" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
-              <Link to="/about" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">About</Link>
-              <Link to="/#contact" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
+              <Link to="/work" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">WORK</Link>
+              <Link to="/pricing" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">PRICING</Link>
+              <Link to="/about" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">ABOUT</Link>
+              <a href="/#contact" className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">CONTACT</a>
             </div>
 
             {/* RIGHT SIDE: Search + Toggle + Button */}
@@ -138,7 +138,9 @@ const Navbar = () => {
               <div className="flex flex-col gap-8">
                 {Object.entries(menus).map(([key, options]) => (
                   <div key={key} className="space-y-4">
-                    <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">{key}</h4>
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                      {key === 'services' ? 'SERVICES' : key.toUpperCase()}
+                    </h4>
                     <div className="grid gap-4">
                       {options.map((option) => (
                         <a

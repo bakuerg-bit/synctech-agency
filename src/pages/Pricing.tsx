@@ -90,7 +90,8 @@ const Pricing = () => {
     };
 
     const handleCTAClick = () => {
-        navigate('/#contact');
+        // Navigate to homepage and scroll to contact
+        window.location.href = '/#contact';
     };
 
     return (
@@ -125,8 +126,8 @@ const Pricing = () => {
                                 <div
                                     key={plan.id}
                                     className={`relative p-8 rounded-2xl border ${plan.isPopular
-                                            ? 'border-primary bg-primary/5 shadow-lg scale-105'
-                                            : 'border-border bg-card'
+                                        ? 'border-primary bg-primary/5 shadow-lg scale-105'
+                                        : 'border-border bg-card'
                                         } transition-all duration-300 hover:shadow-xl`}
                                 >
                                     {plan.isPopular && (
