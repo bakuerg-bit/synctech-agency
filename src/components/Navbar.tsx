@@ -79,8 +79,12 @@ const Navbar = () => {
                             className="group/item p-4 rounded-lg hover:bg-secondary/50 transition-colors"
                             onMouseEnter={() => setHoveredItem(option.title)}
                             onMouseLeave={() => setHoveredItem(null)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              window.location.href = option.href;
+                            }}
                           >
-                            <div className="text-sm font-semibold text-foreground mb-1 group-hover/item:text-primary transition-colors">
+                            <div className="text-sm font-semibold text-foreground mb-1 group-hover/item:text-primary transition-colors uppercase">
                               {option.title}
                             </div>
                             <div className="text-xs text-muted-foreground leading-relaxed">
@@ -149,7 +153,7 @@ const Navbar = () => {
                           className="block group"
                           onClick={() => setIsOpen(false)}
                         >
-                          <div className="text-lg font-semibold text-foreground">{option.title}</div>
+                          <div className="text-lg font-semibold text-foreground uppercase">{option.title}</div>
                           <div className="text-sm text-muted-foreground">{option.desc}</div>
                         </a>
                       ))}
