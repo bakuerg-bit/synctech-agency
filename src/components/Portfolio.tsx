@@ -9,7 +9,7 @@ const Portfolio = () => {
     useEffect(() => {
         const loadProjects = async () => {
             const data = await PortfolioStorage.getProjects();
-            setProjects(data);
+            setProjects(Array.isArray(data) ? data : []);
         };
         loadProjects();
         window.addEventListener('storage-portfolio-updated', loadProjects);

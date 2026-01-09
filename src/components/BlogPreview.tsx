@@ -11,7 +11,7 @@ const BlogPreview = () => {
     useEffect(() => {
         const loadPosts = async () => {
             const data = await BlogStorage.getPosts();
-            setPosts(data.slice(0, 3));
+            setPosts(Array.isArray(data) ? data.slice(0, 3) : []);
         };
         loadPosts();
         window.addEventListener('storage-blog-updated', loadPosts);

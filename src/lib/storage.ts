@@ -128,7 +128,7 @@ export const LeadStorage = {
       .order('created_at', { ascending: false });
     if (error) return [];
 
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       name: d.name,
       email: d.email,
@@ -172,7 +172,7 @@ export const PortfolioStorage = {
   getProjects: async (): Promise<Project[]> => {
     const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
     if (error) return [];
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       title: d.title,
       category: d.category,
@@ -224,7 +224,7 @@ export const BlogStorage = {
   getPosts: async (): Promise<BlogPost[]> => {
     const { data, error } = await supabase.from('blog_posts').select('*').eq('published', true).order('created_at', { ascending: false });
     if (error) return [];
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       title: d.title,
       content: d.content,
@@ -238,7 +238,7 @@ export const BlogStorage = {
   getAllPostsAdmin: async (): Promise<BlogPost[]> => {
     const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
     if (error) return [];
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       title: d.title,
       content: d.content,
@@ -304,7 +304,7 @@ export const NewsletterStorage = {
   getSubscribers: async (): Promise<Subscriber[]> => {
     const { data, error } = await supabase.from('subscribers').select('*');
     if (error) return [];
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       email: d.email,
       date: d.created_at,
@@ -428,7 +428,7 @@ export const TestimonialStorage = {
   getTestimonials: async (): Promise<Testimonial[]> => {
     const { data, error } = await supabase.from('testimonials').select('*');
     if (error) return [];
-    return data.map((d: any) => ({
+    return (data || []).map((d: any) => ({
       id: d.id,
       name: d.name,
       role: d.role,
@@ -481,7 +481,7 @@ export const ServiceStorage = {
   getServices: async (): Promise<Service[]> => {
     const { data, error } = await supabase.from('services').select('*').order('number', { ascending: true });
     if (error) return [];
-    return data;
+    return data || [];
   },
 
   addService: async (service: Omit<Service, 'id'>) => {

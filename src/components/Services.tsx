@@ -9,7 +9,7 @@ const Services = () => {
   useEffect(() => {
     const loadServices = async () => {
       const data = await ServiceStorage.getServices();
-      setServices(data);
+      setServices(Array.isArray(data) ? data : []);
     };
     loadServices();
     window.addEventListener('storage-services-updated', loadServices);
