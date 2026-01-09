@@ -13,8 +13,9 @@ const Inbox = () => {
     const [leads, setLeads] = useState<Lead[]>([]);
     const { toast } = useToast();
 
-    const loadLeads = () => {
-        setLeads(LeadStorage.getLeads());
+    const loadLeads = async () => {
+        const data = await LeadStorage.getLeads();
+        setLeads(Array.isArray(data) ? data : []);
     };
 
     useEffect(() => {
@@ -57,9 +58,9 @@ const Inbox = () => {
                         </TableCell>
                         <TableCell>
                             <span className={`text-xs px-2 py-1 rounded capitalize ${lead.category === 'sales' ? 'bg-blue-100 text-blue-700' :
-                                    lead.category === 'support' ? 'bg-orange-100 text-orange-700' :
-                                        lead.category === 'partnership' ? 'bg-purple-100 text-purple-700' :
-                                            'bg-gray-100 text-gray-700'
+                                lead.category === 'support' ? 'bg-orange-100 text-orange-700' :
+                                    lead.category === 'partnership' ? 'bg-purple-100 text-purple-700' :
+                                        'bg-gray-100 text-gray-700'
                                 }`}>
                                 {lead.category}
                             </span>

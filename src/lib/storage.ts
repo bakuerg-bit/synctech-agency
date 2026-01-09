@@ -17,15 +17,27 @@ export interface VisitorLog {
 // OR implement a simple 'insert' only. Let's keep it simple: insert to DB.
 export const VisitorStorage = {
   getLogs: async (): Promise<VisitorLog[]> => {
-    // We probably don't need to fetch ALL logs for frontend, usually just for admin.
-    // For now return empty or implement if needed.
-    return [];
+    const { data, error } = await supabase
+      .from('visitor_logs')
+      .select('*')
+      .order('timestamp', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching logs:', error);
+      return [];
+    }
+
+    return data || [];
   },
 
   addLog: async (log: Omit<VisitorLog, 'id' | 'timestamp'>) => {
-    // Optional: Implement analytics table in Supabase later.
-    // For now, no-op or console log to avoid errors.
-    console.log('VisitorLog:', log);
+    await supabase.from('visitor_logs').insert([{
+      page: log.page,
+      user_agent: log.userAgent, // Map to snake_case column
+      referrer: log.referrer,
+      screen_resolution: log.screenResolution,
+      language: log.language
+    }]);
   },
 
   clearLogs: async () => {
