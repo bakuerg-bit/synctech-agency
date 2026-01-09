@@ -27,7 +27,15 @@ export const VisitorStorage = {
       return [];
     }
 
-    return data || [];
+    return (data || []).map((d: any) => ({
+      id: d.id,
+      timestamp: d.timestamp,
+      page: d.page,
+      userAgent: d.user_agent, // Map snake_case to camelCase
+      referrer: d.referrer,
+      screenResolution: d.screen_resolution, // Map snake_case to camelCase
+      language: d.language
+    }));
   },
 
   addLog: async (log: Omit<VisitorLog, 'id' | 'timestamp'>) => {
